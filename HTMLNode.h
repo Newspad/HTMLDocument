@@ -36,6 +36,7 @@
 #import <libxml/HTMLtree.h>
 
 #define kClassKey @"class"
+#define kIdKey @"id"
 
 // ARCMacros by John Blanco
 // added a macro for computed readonly properties which return always autoreleased objects
@@ -127,6 +128,9 @@
  */
 - (HTMLNode *)childAtIndex:(NSUInteger)index;
 
+// Remove Node
+- (void)remove;
+
 #pragma mark - attributes and values of current node (self)
 
 /*! The attribute value of a node matching a given name
@@ -149,6 +153,9 @@
 @property (SAFE_ARC_READONLY_OBJ_PROP) NSString *className;
 
 /*! The value for the href attribute*/
+@property (SAFE_ARC_READONLY_OBJ_PROP) NSString *idName;
+
+// Returns the value for the href attribute
 @property (SAFE_ARC_READONLY_OBJ_PROP) NSString *hrefValue;
 
 /*! The value for the src attribute*/

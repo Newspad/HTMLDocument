@@ -204,6 +204,15 @@ void childrenOfTag(const xmlChar * tagName, xmlNode * node, NSMutableArray * arr
 	return (xmlNode_->last) ? [HTMLNode nodeWithXMLNode:xmlNode_->last] : nil;
 }
 
+- (void)remove
+{
+	if(xmlNode_!=NULL)
+	{
+		xmlUnlinkNode(xmlNode_);
+		xmlFreeNode(xmlNode_);
+	}
+}
+
 - (HTMLNode *)childAtIndex:(NSUInteger)index
 {
 	NSArray *childrenArray = self.children;
@@ -230,6 +239,11 @@ void childrenOfTag(const xmlChar * tagName, xmlNode * node, NSMutableArray * arr
 }
 
 #pragma mark - attributes and values of current node (self)
+
+- (void)setAttributeForName:(NSString *)name value:(NSString *)value
+{
+	xmlSetProp(xmlNode_, BAD_CAST [name UTF8String], BAD_CAST [value UTF8String]);
+}
 
 - (NSString *)attributeForName:(NSString *)name
 {
@@ -268,6 +282,11 @@ void childrenOfTag(const xmlChar * tagName, xmlNode * node, NSMutableArray * arr
 - (NSString *)className // actually classValue
 {
 	return [self attributeForName:kClassKey];
+}
+
+- (NSString *)idName
+{
+	return [self attributeForName:kIdKey];
 }
 
 - (NSString *)hrefValue
