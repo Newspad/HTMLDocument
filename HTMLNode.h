@@ -137,6 +137,7 @@
  * \param attributeName A name of an attribute
  * \returns The attribute value or nil if the attribute could not be found
  */
+- (void)setAttributeForName:(NSString *)attributeName value:(NSString *)value;
 - (NSString *)attributeForName:(NSString *)attributeName;
 
 /*! All attributes and values as dictionary
